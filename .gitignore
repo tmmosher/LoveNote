@@ -36,3 +36,5 @@ yarn-error.*
 *.tsbuildinfo
 
 app-example
+.idea/vcs.xml
+.idea/workspace.xml
