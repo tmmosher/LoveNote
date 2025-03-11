@@ -36,6 +36,15 @@
     ],
     "experiments": {
       "typedRoutes": true
-    }
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "d797949d-aa32-449a-b065-f3005666265d"
+      }
+    },
+    "owner": "tmmosher"
   }
 }
