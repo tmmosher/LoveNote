@@ -2,7 +2,6 @@ import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { useFonts } from "expo-font";
 import { useEffect } from "react";
-import { useColorScheme } from "react-native";
 
 export {
   ErrorBoundary,
@@ -16,7 +15,7 @@ SplashScreen.preventAutoHideAsync();
 export default function RootLayout() {
   // load font(s)
   const [loaded, error] = useFonts({
-    SpaceMono: require("assets/fonts/SpaceMono-Regular.ttf"),
+    SpaceMono: require("@/assets/fonts/SpaceMono-Regular.ttf"),
   })
 
   useEffect(() => {
@@ -26,14 +25,23 @@ export default function RootLayout() {
   })
 
   useEffect(() => {
-    if (loaded) {
+    if (loaded || error) {
       SplashScreen.hideAsync();
     }
-  }, [loaded]);
+  }, [loaded, error]);
 
-  if (!loaded) {
+  if (!loaded && !error) {
     return null;
   }
 
-  return <Stack />;
+  return (
+      <Stack>
+        <Stack.Screen
+          name="index"
+          options={{
+            headerShown: false,
+          }}
+        />
+      </Stack>
+  );
 }
