@@ -16,7 +16,7 @@ export const dark = {
     secondary: "#cfc9c6",
     background: "#6D2E4B",
     tint: "#F5E9E4",
-    interactive: "#8A4B6E",
+    interactive: "#a5688a",
     tabIconDefault: "#E8C8C8",
     tabIconSelected: "#8A4B6E"
 }
