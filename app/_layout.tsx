@@ -9,6 +9,11 @@ export {
 
 SplashScreen.preventAutoHideAsync();
 
+SplashScreen.setOptions({
+    duration: 1000,
+    fade: true
+})
+
 // TODO: For global appearance update in the future, read this:
 // https://github.com/facebook/react-native/blob/main/packages/rn-tester/js/examples/Appearance/AppearanceExample.js
 
@@ -37,10 +42,10 @@ export default function RootLayout() {
   return (
       <Stack>
         <Stack.Screen
-          name="index"
-          options={{
-            headerShown: false,
-          }}
+            name="index"
+            options={{
+              headerShown: false,
+            }}
         />
       </Stack>
   );
