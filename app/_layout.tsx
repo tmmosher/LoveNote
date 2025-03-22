@@ -35,16 +35,13 @@ export default function RootLayout() {
   }
 
   return (
-    <NavigationContainer>
-      <Stack.Navigator>
+      <Stack>
         <Stack.Screen
             name="index"
             options={{
               headerShown: false,
             }}
-            component={ Index }
         />
-      </Stack.Navigator>
-    </NavigationContainer>
+      </Stack>
   );
 }

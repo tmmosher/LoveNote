@@ -1,4 +1,4 @@
-import { Text, TextInput, TouchableOpacity, StyleSheet, View } from "react-native";
+import { Text, TextInput, TouchableOpacity, StyleSheet, View, Alert } from "react-native";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useState } from "react";
 import { getStyles } from "@/hooks/getStyles.ts";
@@ -6,18 +6,23 @@ import { getStyles } from "@/hooks/getStyles.ts";
 const saveName = async (text : string) => {
     try {
         await AsyncStorage.setItem("name", text);
+        //TODO: This button will navigate the user away
+        // from the screen to the dashboard.
+        // For now just alerts
+        //router.replace("")
+        Alert.alert("Success", "Name saved!", [{
+            text: "Ok",
+            style: "cancel",
+        }])
     } catch (error) {
-        alert({
-            title: "Error",
-            message: "Failed to save name. Please check permissions.",
-            options: {
-                cancelable: true
-            }
-        })
+        Alert.alert("Error", "Failed to save name!", [{
+            text: "Ok",
+            style: "cancel",
+        }])
     }
 }
 
-export default function Index({navigation}) {
+export default function Index() {
     const [text, setText] = useState<string>("");
     const styles = getStyles();
     return (
