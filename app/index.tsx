@@ -1,13 +1,23 @@
 import { Text, TextInput, TouchableOpacity, StyleSheet, View } from "react-native";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useState } from "react";
 import { getStyles } from "@/hooks/getStyles.ts";
 
-const saveName = (text : string) => {
-    //TODO: implement async storage saving.
-    // Could have been put in this task but I didnt for some reason
+const saveName = async (text : string) => {
+    try {
+        await AsyncStorage.setItem("name", text);
+    } catch (error) {
+        alert({
+            title: "Error",
+            message: "Failed to save name. Please check permissions.",
+            options: {
+                cancelable: true
+            }
+        })
+    }
 }
 
-export default function Index() {
+export default function Index({navigation}) {
     const [text, setText] = useState<string>("");
     const styles = getStyles();
     return (
