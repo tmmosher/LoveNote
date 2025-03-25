@@ -2,6 +2,9 @@ import { Text, TextInput, TouchableOpacity, StyleSheet, View, Alert } from "reac
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useState } from "react";
 import { getStyles } from "@/hooks/getStyles.ts";
+import {router} from "expo-router";
+
+let name: string = "";
 
 const saveName = async (text : string) => {
     try {
@@ -9,11 +12,8 @@ const saveName = async (text : string) => {
         //TODO: This button will navigate the user away
         // from the screen to the dashboard.
         // For now just alerts
-        //router.replace("")
-        Alert.alert("Success", "Name saved!", [{
-            text: "Ok",
-            style: "cancel",
-        }])
+        name = text;
+        setTimeout(()=> router.replace("/dashboard/home"), 1000)
     } catch (error) {
         Alert.alert("Error", "Failed to save name!", [{
             text: "Ok",
@@ -41,6 +41,7 @@ export default function Index() {
                 value={text}
                 onChangeText={newText => setText(newText)}
             />
+            {name!=="" && <Text style={styles.text}>Success!</Text>}
             <TouchableOpacity
                 style={[styles.wideButton, localStyles.saveButton]}
                 onPress={() => saveName(text)}
